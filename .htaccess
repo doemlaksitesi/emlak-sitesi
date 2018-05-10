@@ -1,0 +1,42 @@
+Options +FollowSymLinks
+RewriteEngine On
+
+#RewriteRule ^([\w-]*)$ %1 [QSA]
+#RewriteRule ^([\w-]*)/$ %1 [QSA]
+#RewriteCond %{HTTP_HOST} ^[^.]+\.[^.]+$
+#RewriteCond %{HTTPS}s ^on(s)|
+#RewriteRule ^ http%1://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+ErrorDocument 404 /404.php
+
+RewriteRule  ^([^/]+)/$ index.php [NC,L,QSA]
+RewriteRule  ^([^/]+)/iletisim/ iletisim.php [NC,L,QSA]
+RewriteRule  ^([^/]+)/ililce/ ililce.php [NC,L,QSA]
+RewriteRule  ^([^/]+)/([^/]+)/detay-([0-9]+)/$  ilan-detay.php?ID=$3 [NC,L,QSA]
+RewriteRule  ^([^/]+)/ilan-guncelle/([0-9]+)/$ ilan-guncelle.php?ID=$2 [NC,L,QSA]
+RewriteRule  ^([^/]+)/([^/]+)/sayfa-([0-9]+)/$  pages.php?id=$3 [NC,L,QSA]
+RewriteRule  ^([^/]+)/([^/]+)/haberler-([0-9]+)/$  haberler.php?id=$3 [NC,L,QSA]
+RewriteRule  ^([^/]+)/giris-yap/ uye-giris.php [NC,L,QSA]
+RewriteRule  ^([^/]+)/sifremi-unuttum/ sifremi-unuttum.php [NC,L,QSA]
+RewriteRule  ^([^/]+)/ilan-ekle/ ilan-ekle.php [NC,L,QSA]
+RewriteRule  ^([^/]+)/arama/ ilan-arama.php [NC,L,QSA]
+RewriteRule  ^([^/]+)/arama/([0-9a-zA-Z\-\_]+)/$ ilan-arama.php?$1 [NC,L,QSA]
+RewriteRule  ^([^/]+)/favori-ilanlar/ favori-ilanlar.php [NC,L,QSA]
+RewriteRule  ^([^/]+)/ilanlarim/ uye-emlak-listesi.php [NC,L,QSA]
+RewriteRule  ^([^/]+)/kurumsal-uye/  uye-ekle.php?Uye=&UyeTipi=kurumsal&msg= [NC,L,QSA]
+RewriteRule  ^([^/]+)/bireysel-uye/  uye-ekle.php?Uye=&UyeTipi=bireysel&msg= [NC,L,QSA]
+RewriteRule  ^([^/]+)/uye-guncelle/ uye-duzenle.php [NC,L,QSA]
+RewriteRule  ^([^/]+)/cikis-yap/ logout.php [NC,L,QSA]
+RewriteRule  ^([^/]+)/uye-aktivasyon/  uye-aktivasyon.php [NC,L,QSA]
+RewriteRule  ^([^/]+)/emlak-ofisleri/  uye-arama.php?UyeTip=2 [NC,L,QSA]
+RewriteRule  ^([^/]+)/insaat-firmalari/  uye-arama.php?UyeTip=3[NC,L,QSA]
+RewriteRule  ^([^/]+)/muteahhitler/  uye-arama.php?UyeTip=4[NC,L,QSA]
+RewriteRule  ^([^/]+)/([^/]+)/uye-([0-9]+)/$ uye.php?id=$3 [NC,L,QSA]
+
+<FilesMatch "(?i)((\.ini|\.log))">
+ Require all denied
+</FilesMatch>
+
+<FilesMatch "(php3|php4|php5|phps|htm|cfm|cgi|py|pl|asp|aspx|zip|rar|tar)$">
+Deny From All
+</FilesMatch>
